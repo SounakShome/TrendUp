@@ -33,6 +33,15 @@ export function CartProvider({ children }) {
         saveCart({});
     };
 
+    const buyNow = (itemCode, qty, price, name, size, variant) => {
+        let newCart = {};
+        qty = 1;
+        newCart[itemCode] = { qty, price, name, size, variant };
+        setCart(newCart);
+        saveCart(newCart);
+        router.push("/checkout");
+    };
+
     const addToCart = (itemCode, qty, price, name, size, variant) => {
         let newCart = cart;
         if (itemCode in cart) {
@@ -62,7 +71,8 @@ export function CartProvider({ children }) {
             subTotal,
             addToCart,
             removeFromCart,
-            clearCart
+            clearCart,
+            buyNow,
          }}>
             {children}
         </CartContext.Provider>

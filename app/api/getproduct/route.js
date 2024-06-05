@@ -11,7 +11,7 @@ export async function GET(req) {
     const slug = searchParams.get("slug");
 
     let product = await Product.findOne({slug: slug});
-    let variants = await Product.find({title: product.title});
+    let variants = await Product.find({title: product.title, category: product.category});
     let infoVariant = {};
 
     for (let item of variants){

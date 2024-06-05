@@ -2,14 +2,14 @@ import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
 
-export default function Tshirt({ products }) {
+export default function Products({ products, type }) {
     let colours = [];
     const Erase = () => {
         colours = [];
     }
     return (
         <section className="text-gray-600 body-font mx-8">
-            <h1 className='m-5 px-2 text-3xl font-semibold'>T-Shirts</h1>
+            <h1 className='m-5 px-2 text-3xl font-semibold'>{type}</h1>
             <div className="container px-5 py-5 mx-auto">
                 <div className="flex flex-wrap -m-4">
                     {Object.keys(products).map((product) => {

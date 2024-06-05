@@ -90,7 +90,13 @@ const Checkout = () => {
               return (
                 <li key={cart[item]} className='p-3'>
                   <div className="item flex my-3">
-                    <div className='font-semibold'>{cart[item].name}</div>
+                    <div className='font-semibold'>
+                      {cart[item].name}
+                      <br />
+                      <div className='text-sm text-gray-500'>
+                        Colour: {cart[item].variant} <br /> Size: {cart[item].size} <br /> Price: {cart[item].price} 
+                      </div>
+                    </div>
                     <div className='w-1/3 font-semibold flex items-center justify-center text-xl'><AiOutlineMinusCircle onClick={() => { removeFromCart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-pink-500 cursor-pointer text-2xl' /> <span className='mx-3'>{cart[item].qty}</span> <AiOutlinePlusCircle onClick={() => { addToCart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-pink-500 cursor-pointer text-2xl' /></div>
                   </div>
                 </li>

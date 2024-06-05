@@ -47,7 +47,7 @@ const Navbar = () => {
             <CiShoppingCart />
           </button>
         </div>
-        <div ref={ref} className='z-10 overflow-y-auto fixed top-0 right-0 bg-pink-100 p-10 transform transition-transform translate-x-full h-full'>
+        <div ref={ref} className='z-10 overflow-y-scroll fixed top-0 right-0 bg-pink-100 p-10 transform transition-transform translate-x-full h-full'>
           <h2 className="title-font font-bold text-xl">Shopping Cart</h2>
           <span className="absolute top-5 right-2 cursor-pointer" onClick={toggleCart}><IoIosCloseCircleOutline className='text-3xl text-pink-500' /></span>
           <ol className='list-decimal'>
@@ -59,7 +59,7 @@ const Navbar = () => {
                     <div className='w-2/3 font-semibold'>
                         {cart[item].name}
                         <br />
-                        <div className='text-sm text-gray-500'>Colour: {cart[item].variant} <br /> Size: {cart[item].size}</div>
+                        <div className='text-sm text-gray-500'>Colour: {cart[item].variant} <br /> Size: {cart[item].size} <br /> Price: {cart[item].price} </div>
                     </div>
                     <div className='w-1/3 font-semibold flex items-center justify-center text-xl'><AiOutlineMinusCircle onClick={() => { removeFromCart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-pink-500 cursor-pointer text-2xl' /> <span className='mx-3'>{cart[item].qty}</span> <AiOutlinePlusCircle onClick={() => { addToCart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-pink-500 cursor-pointer text-2xl' /></div>
                   </div>
