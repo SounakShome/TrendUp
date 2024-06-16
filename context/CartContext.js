@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/navigation";
-import LoadingBar from "react-top-loading-bar";
 
 const CartContext = createContext();
 
@@ -10,7 +9,6 @@ export function CartProvider({ children }) {
   const [subTotal, setSubTotal] = useState(0);
   const [user, setUser] = useState({ value: null });
   const [key, setKey] = useState(0);
-  const [progress, setProgress] = useState(0);
   const router = useRouter();
   
   useEffect(() => {
@@ -46,6 +44,13 @@ export function CartProvider({ children }) {
   const clearCart = () => {
     setCart({});
     saveCart({});
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser({ value: null });
+    setKey(Math.random());
+    router.push("/login");
   };
 
   const buyNow = (itemCode, qty, price, name, size, variant) => {
@@ -91,13 +96,9 @@ export function CartProvider({ children }) {
         clearCart,
         buyNow,
         setUser,
+        logout,
       }}
     >
-      <LoadingBar
-        color="#f11946"
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
       {children}
     </CartContext.Provider>
   );
