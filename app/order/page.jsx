@@ -51,7 +51,6 @@ const Order = () => {
               </Link>
             </div>
           </div>
-          <Image width={0} height={0} style={{ width: 'auto', height: 'auto' }} sizes='100vw' alt="ecommerce" className="px-20 max-h-[70vh] h-[30vh] block md:mx-0 m-auto" src="https://m.media-amazon.com/images/I/713n+TxyfCL._SY879_.jpg" />
         </div>
       </div>
     </section>

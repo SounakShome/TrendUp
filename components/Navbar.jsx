@@ -13,7 +13,7 @@ import CartContext from "@/context/CartContext"
 const Navbar = () => {
 
   const ref = useRef();
-  const { cart, subTotal, addToCart, removeFromCart, clearCart, } = useContext(CartContext);
+  const { cart, subTotal, user, addToCart, removeFromCart, clearCart, } = useContext(CartContext);
 
   const toggleCart = () => {
     if (ref.current.classList.contains("translate-x-full")) {
@@ -31,19 +31,20 @@ const Navbar = () => {
         <Link href={"/"} className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <Image src='/largelogo.png' alt='logo' width={100} height={0} />
         </Link>
-        <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l text-gray-600 md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+        <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l relative text-gray-600 md:border-gray-400	flex flex-wrap items-center text-base justify-center">
           <Link href={"/hoodies"} className="mr-5 hover:text-gray-900">Hoodies</Link>
           <Link href={"/mugs"} className="mr-5 hover:text-gray-900">Mugs</Link>
           <Link href={"/tshirts"} className="mr-5 hover:text-gray-900">T-Shirts</Link>
           <Link href={"/stickers"} className="mr-5 hover:text-gray-900">Stickers</Link>
         </nav>
-        <div className="flex fixed md:top-5 top-1 right-2 md:space-x-4 space-x-0 md:text-3xl text-2xl">
-          <Link href={"/login"}>
-            <button className="inline-flex items-center p-1 focus:outline-none hover:text-pink-500 rounded mt-4 md:mt-0 right-2">
-              <VscAccount />
+        <div className="flex absolute items-center md:top-5 top-1 right-2 md:space-x-4 space-x-0 ">
+          {user.value && <VscAccount className='text-3xl' />}
+          {!user.value && <Link href={"/login"}>
+            <button className="inline-flex items-center p-1 focus:outline-none text-xl hover:text-pink-500 rounded mt-4 md:mt-0 right-2">
+                Login
             </button>
-          </Link>
-          <button onClick={toggleCart} className="inline-flex items-center p-1 focus:outline-none hover:text-pink-500 rounded mt-4 md:mt-0 right-2">
+          </Link>}
+          <button onClick={toggleCart} className="inline-flex items-center p-1 text-3xl focus:outline-none hover:text-pink-500 rounded md:mt-0 right-2">
             <CiShoppingCart />
           </button>
         </div>

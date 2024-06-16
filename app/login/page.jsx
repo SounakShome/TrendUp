@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { FcGoogle } from 'react-icons/fc'
@@ -7,12 +7,14 @@ import Image from 'next/image'
 import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CartContext from "@/context/CartContext"
 
 export default function Login() {
   const router = useRouter();
   const [icon, setIcon] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { setUser } = useContext(CartContext);
 
   const visibility = async (e) => {
     e.preventDefault();
@@ -29,8 +31,9 @@ export default function Login() {
       body: JSON.stringify(data)
     })
     let response = await res.json();
-    console.log(response)
     if (response.success) {
+      localStorage.setItem("token", response.token)
+      setUser({value: response.token})
       toast.success('You are successfully logged in!', {
         position: "bottom-left",
         autoClose: 2000,
@@ -77,7 +80,6 @@ export default function Login() {
         <div className="relative px-4 py-10 mx-8 md:mx-0 sm:p-10">
           <div className="max-w-md mx-auto">
             <div className="flex flex-col items-center space-x-5 justify-center">
-              <Image src="/largelogo.png" alt='logo' width={100} height={300}></Image>
               <h1 className='my-3 text-3xl font-normal text-dark-grey-900'>Log in</h1>
             </div>
             <form onSubmit={handleSubmit}>

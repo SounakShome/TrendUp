@@ -15,8 +15,6 @@ export default function Product({ slug, variant, product }) {
     const [price, setPrice] = useState("")
     const { cart, subTotal, addToCart, removeFromCart, clearCart, buyNow } = useContext(CartContext);
 
-    console.log(variant["blue"]["M"]["price"]);
-
     const checkPincode = async () => {
         const res = await fetch("http://localhost:3000/api/pincode").then((a) => a.json())
         const pins = res.pincodes;
