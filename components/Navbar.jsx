@@ -2,13 +2,12 @@
 import React, { useRef, useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { CiShoppingCart } from "react-icons/ci";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { IoBagCheck } from "react-icons/io5";
 import { TbShoppingCartX } from "react-icons/tb";
 import { VscAccount } from "react-icons/vsc";
-import CartContext from "@/context/CartContext"
+import CartContext from "../context/CartContext"
 
 export default function Navbar() {
 
@@ -26,7 +25,7 @@ export default function Navbar() {
     }
 
     return (
-        <div>
+        <div className='sticky top-0 z-50'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -39,9 +38,9 @@ export default function Navbar() {
                                 Categories
                                 <ul className="p-2">
                                     <li><Link href={'/hoodies'}>Hoodies</Link></li>
-                                    <li><Link href={'/hoodies'}>Mugs</Link></li>
-                                    <li><Link href={'/hoodies'}>T-Shirts</Link></li>
-                                    <li><Link href={'/hoodies'}>Stickers</Link></li>
+                                    <li><Link href={'/mugs'}>Mugs</Link></li>
+                                    <li><Link href={'/tshirts'}>T-Shirts</Link></li>
+                                    <li><Link href={'/stickers'}>Stickers</Link></li>
                                 </ul>
                             </li>
                             <li><Link href={'/contact'}>Conatct</Link></li>
@@ -57,9 +56,9 @@ export default function Navbar() {
                                 <summary>Categories</summary>
                                 <ul className="p-2">
                                     <li><Link href={'/hoodies'}>Hoodies</Link></li>
-                                    <li><Link href={'/hoodies'}>Mugs</Link></li>
-                                    <li><Link href={'/hoodies'}>T-Shirts</Link></li>
-                                    <li><Link href={'/hoodies'}>Stickers</Link></li>
+                                    <li><Link href={'/mugs'}>Mugs</Link></li>
+                                    <li><Link href={'/tshirts'}>T-Shirts</Link></li>
+                                    <li><Link href={'/stickers'}>Stickers</Link></li>
                                 </ul>
                             </details>
                         </li>
@@ -99,7 +98,7 @@ export default function Navbar() {
                                         Profile
                                     </Link>
                                 </li>
-                                <li className='m-1'>Settings</li>
+                                <li className='m-1'><Link href={'/orders'}>Orders</Link></li>
                                 <li className='m-1'><button onClick={logout}>Logout</button></li>
                             </ul></div>}
                     </div>
